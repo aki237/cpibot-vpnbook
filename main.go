@@ -2,14 +2,15 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
-	"github.com/aki237/cpibot"
+	cpibot "github.com/aki237/cpibot-go"
 	"github.com/aki237/vpnbook"
 )
 
 func returnFunc(msg cpibot.Message) (string, bool) {
-	if msg.Content.Content == "vpnbook password" {
-		return vpnbook.GetPassword(), true
+	if strings.Contains(msg.Content.Content, "vpnbook") && strings.Contains(msg.Content.Content, "password") {
+		return "The password is <b>" + vpnbook.GetPassword() + "</b>", true
 	}
 	return "", false
 }
